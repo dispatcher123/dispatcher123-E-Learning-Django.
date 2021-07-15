@@ -1,0 +1,89 @@
+{% extends "main.html" %}
+
+
+
+{% block content %}
+
+
+{% if not course.is_premium %}
+<link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
+<div class='container mt-5'>
+    <div class='row'>
+        <div class='col-sm-8'>
+            <h3>{{course.title}}</h3>
+    <video
+    id="my-video"
+    class="video-js"
+    controls="auto"
+    autoplay="auto"
+    preload="auto"
+    width="700"
+    height="400"
+    poster="{{course.image.url}}"
+    data-setup="{
+    }"
+  >
+    <source src="{{course.video.url}}" type="video/mp4" />
+    
+   
+    
+  </video>
+        </div>
+        <div class='col-sm-4'>
+            <h1>{{ course.title }}</h1>
+            <p>{{course.updated_date}}</p>
+            <hr><br>
+            <h5>{{course.description}}</h5>
+
+        </div>
+    </div>
+  
+</div>
+  <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+{% else %}
+
+{% if request.user.profile.is_pro %}
+<link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
+<div class='container mt-5'>
+    <div class='row'>
+        <div class='col-sm-8'>
+            <h3>{{course.title}}</h3>
+    <video
+    id="my-video"
+    class="video-js"
+    controls="auto"
+    autoplay="auto"
+    preload="auto"
+    width="700"
+    height="400"
+    poster="{{course.image.url}}"
+    data-setup="{
+    }"
+  >
+    <source src="{{course.video.url}}" type="video/mp4" />
+    
+   
+    
+  </video>
+        </div>
+        <div class='col-sm-4'>
+            <h1>{{ course.title }}</h1>
+            <p>{{course.updated_date}}</p>
+            <hr><br>
+            <h5>{{course.description}}</h5>
+
+        </div>
+    </div>
+  
+</div>
+  <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+  
+{% endif %}
+  
+  
+{% endif %}
+  
+  
+  
+  
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'main.html' %}
+
+
+
+
+{% block content %}
+<div class='container mt-5'>
+  <div class='row'>
+    {% for course in courses %}
+    <div class='col-lg-4'>
+      <div class='card shadow'>
+        <img src="{{course.image.url}}" style="height: 200px;" class='card-img-top'>
+        <div class='card-body' style="background-color: rgb(203, 214, 161);">
+        
+        {% if course.is_premium %}
+        <div class="d-flex flex-row-reverse bd-highlight">
+          <span class='badge badge-success'> Premium </span>
+        </div>
+        {% else %}
+        <div class="d-flex flex-row-reverse bd-highlight">
+          <span class='badge badge-danger'> Free </span>
+        </div>
+        {% endif %}
+          
+
+        <h5>{{course.title}}</h5>
+        <p>{{ course.description|truncatechars_html:40}}</p>
+
+        <a href="{% url 'course_detail' slug=course.slug %}" class='btn btn-primary'>View Course</a>
+      </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+  
+{% endblock %}
